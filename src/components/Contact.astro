@@ -90,7 +90,7 @@
       
       <div class="animate-on-scroll" style="animation-delay: 200ms;">
         <div class="card backdrop-blur-sm">
-          <form class="space-y-6">
+          <form id="contactForm" class="space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Nombre</label>
@@ -145,6 +145,7 @@
               <button 
                 type="submit" 
                 class="w-full btn btn-primary group"
+                id="submitBtn"
               >
                 <span class="flex items-center justify-center">
                   Enviar Mensaje
@@ -153,10 +154,78 @@
                   </svg>
                 </span>
               </button>
+              <div id="formStatus" class="mt-4 text-center hidden">
+                <p id="successMessage" class="text-green-400 hidden">¡Mensaje enviado correctamente! Te responderé lo antes posible.</p>
+                <p id="errorMessage" class="text-red-400 hidden">Ha ocurrido un error al enviar el mensaje. Por favor, inténtalo de nuevo.</p>
+              </div>
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>
-</section> 
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contactForm') as HTMLFormElement;
+    const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
+    const formStatus = document.getElementById('formStatus') as HTMLDivElement;
+    const successMessage = document.getElementById('successMessage') as HTMLParagraphElement;
+    const errorMessage = document.getElementById('errorMessage') as HTMLParagraphElement;
+    
+    // URL del webhook de n8n
+    const n8nWebhookUrl = 'https://jlopez5.app.n8n.cloud/webhook/joanlopezcontact';
+    
+    if (contactForm && submitBtn && formStatus && successMessage && errorMessage) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Deshabilitar el botón mientras se envía
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="flex items-center justify-center">Enviando... <svg class="animate-spin h-5 w-5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></span>';
+        
+        // Recoger los datos del formulario
+        const formData = new FormData(contactForm);
+        const formDataObj: Record<string, string> = {};
+        formData.forEach((value, key) => {
+          formDataObj[key] = value.toString();
+        });
+        
+        try {
+          // Enviar los datos a n8n
+          const response = await fetch(n8nWebhookUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formDataObj)
+          });
+          
+          if (response.ok) {
+            // Mostrar mensaje de éxito
+            formStatus.classList.remove('hidden');
+            successMessage.classList.remove('hidden');
+            errorMessage.classList.add('hidden');
+            contactForm.reset();
+          } else {
+            // Mostrar mensaje de error
+            formStatus.classList.remove('hidden');
+            errorMessage.classList.remove('hidden');
+            successMessage.classList.add('hidden');
+          }
+        } catch (error) {
+          console.error('Error al enviar el formulario:', error);
+          // Mostrar mensaje de error
+          formStatus.classList.remove('hidden');
+          errorMessage.classList.remove('hidden');
+          successMessage.classList.add('hidden');
+        }
+        
+        // Restaurar el botón
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span class="flex items-center justify-center">Enviar Mensaje <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H3a1 1 0 110-2h9.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></span>';
+      });
+    }
+  });
+</script> 
