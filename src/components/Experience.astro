@@ -1,146 +1,166 @@
 ---
-// Componente de experiencia profesional
+// Componente Experience
 ---
 
-<section id="experience" class="section py-24 bg-gradient-to-b from-secondary to-black/80">
-  <div class="container mx-auto">
-    <div class="flex flex-col items-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">
-        <span class="text-primary">Experiencia</span> Profesional
+<section id="experience" class="py-24 relative overflow-hidden">
+  <!-- Background effects -->
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-black via-secondary to-secondary/90"></div>
+  
+  <!-- Partículas decorativas -->
+  <div class="absolute inset-0 -z-10">
+    <div class="hidden lg:block absolute top-20 left-20 w-64 h-64 rounded-full bg-blue-900/10 filter blur-3xl"></div>
+    <div class="hidden lg:block absolute bottom-20 right-20 w-64 h-64 rounded-full bg-indigo-900/10 filter blur-3xl"></div>
+    <div class="hidden lg:block absolute bottom-1/3 left-1/3 w-3 h-3 bg-primary/30 rounded-full opacity-70 animate-float" style="animation-delay: 1s;"></div>
+  </div>
+  
+  <!-- Línea decorativa superior -->
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+  
+  <div class="container mx-auto px-4 md:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        <span class="text-white">Experiencia</span>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700"> Profesional</span>
       </h2>
-      <div class="w-20 h-1.5 bg-primary rounded-full mb-8"></div>
-      <p class="text-center text-gray-300 max-w-3xl">
-        Un recorrido por mi experiencia laboral y los roles que he desempeñado como desarrollador y administrador de sistemas.
+      <div class="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mx-auto mb-8"></div>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+        Mi trayectoria profesional a lo largo de distintas empresas y roles tecnológicos.
       </p>
     </div>
     
-    <div class="relative">
-      <!-- Línea vertical del timeline -->
-      <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary/80 to-primary/30"></div>
-      
-      <!-- Timeline items -->
-      <div class="space-y-12">
-        <!-- Item 1 -->
-        <div class="flex flex-col md:flex-row items-center animate-on-scroll">
-          <div class="md:w-1/2 md:pr-12 md:text-right mb-8 md:mb-0">
-            <div class="card hover:scale-105 transition-transform duration-300">
-              <h3 class="text-xl font-bold mb-2">AgriNews</h3>
-              <h4 class="text-primary font-medium mb-2">Desarrollador FullStack (Actual)</h4>
-              <p class="text-gray-300">
-                Desarrollo de aplicaciones web utilizando tecnologías modernas y colaboración en proyectos de transformación digital del sector agrícola.
-              </p>
-              <div class="flex flex-wrap gap-2 mt-4 md:justify-end">
-                <span class="px-3 py-1 text-xs rounded-full bg-blue-900/50 border border-blue-800/50">.NET</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-blue-900/50 border border-blue-800/50">IA</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-blue-900/50 border border-blue-800/50">Backend</span>
-              </div>
-            </div>
+    <!-- Timeline -->
+    <div class="relative max-w-4xl mx-auto">
+      <!-- Línea central -->
+      <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gradient-to-b from-blue-500/50 via-indigo-500/50 to-purple-500/50"></div>
+
+      <!-- Trabajo 1 -->
+      <div class="relative mb-16 animate-on-scroll">
+        <!-- Círculo central -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-blue-500 border-4 border-secondary z-10"></div>
+        
+        <!-- Contenido del trabajo -->
+        <div class="ml-0 md:ml-auto md:mr-auto md:pl-16 md:w-1/2 md:-translate-x-8 glass-card hover-lift hover:border-blue-500/30 border border-blue-500/10 rounded-xl p-6 relative">
+          <!-- Línea conectora -->
+          <div class="hidden md:block absolute top-3 right-full w-16 h-0.5 bg-gradient-to-r from-transparent to-blue-500/50"></div>
+          
+          <!-- Badge del año -->
+          <div class="absolute -top-4 left-4 px-3 py-1 bg-blue-500/20 text-blue-400 text-sm font-medium rounded-full">
+            Actual
           </div>
           
-          <div class="hidden md:flex items-center justify-center z-10">
-            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-              </svg>
-            </div>
-          </div>
-          
-          <div class="md:w-1/2 md:pl-12">
-            <div class="text-lg font-medium text-gray-400 md:hidden mb-4">2023 - Actual</div>
-            <div class="text-lg font-medium text-gray-400 hidden md:block">2023 - Actual</div>
+          <!-- Contenido -->
+          <h3 class="text-2xl font-bold text-white mb-1">FullStack Developer Junior</h3>
+          <h4 class="text-xl text-blue-400 font-medium mb-4">AgriNews</h4>
+          <p class="text-gray-300 mb-6">
+            Desarrollo de aplicaciones web modernas utilizando tecnologías .NET, React y herramientas de IA. 
+            Mantenimiento y mejora de sistemas existentes, trabajo en equipo para entregar soluciones eficientes.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-blue-900/30 border border-blue-500/20 rounded-full text-sm text-blue-300">
+              .NET
+            </span>
+            <span class="px-3 py-1 bg-blue-900/30 border border-blue-500/20 rounded-full text-sm text-blue-300">
+              React
+            </span>
+            <span class="px-3 py-1 bg-blue-900/30 border border-blue-500/20 rounded-full text-sm text-blue-300">
+              IA
+            </span>
+            <span class="px-3 py-1 bg-blue-900/30 border border-blue-500/20 rounded-full text-sm text-blue-300">
+              Backend
+            </span>
           </div>
         </div>
+      </div>
+
+      <!-- Trabajo 2 -->
+      <div class="relative mb-16 animate-on-scroll">
+        <!-- Círculo central -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-indigo-500 border-4 border-secondary z-10"></div>
         
-        <!-- Item 2 -->
-        <div class="flex flex-col md:flex-row items-center animate-on-scroll">
-          <div class="md:w-1/2 md:pr-12 md:text-right order-1 md:order-1 mb-8 md:mb-0 hidden md:block">
-            <div class="text-lg font-medium text-gray-400">2021 - 2023</div>
-          </div>
+        <!-- Contenido del trabajo -->
+        <div class="ml-auto mr-0 md:mr-auto md:pr-16 md:w-1/2 md:translate-x-8 glass-card hover-lift hover:border-indigo-500/30 border border-indigo-500/10 rounded-xl p-6 relative">
+          <!-- Línea conectora -->
+          <div class="hidden md:block absolute top-3 left-full w-16 h-0.5 bg-gradient-to-l from-transparent to-indigo-500/50"></div>
           
-          <div class="hidden md:flex items-center justify-center z-10 order-2 md:order-2">
-            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-          </div>
-          
-          <div class="md:w-1/2 md:pl-12 order-3 md:order-3">
-            <div class="text-lg font-medium text-gray-400 md:hidden mb-4">2021 - 2023</div>
-            <div class="card hover:scale-105 transition-transform duration-300">
-              <h3 class="text-xl font-bold mb-2">Administrador de Sistemas</h3>
-              <h4 class="text-primary font-medium mb-2">Empresa IT</h4>
-              <p class="text-gray-300">
-                Gestión de infraestructura IT, resolución de incidencias y mantenimiento de sistemas. Implementación de mejoras en los procesos tecnológicos.
-              </p>
-              <div class="flex flex-wrap gap-2 mt-4">
-                <span class="px-3 py-1 text-xs rounded-full bg-blue-900/50 border border-blue-800/50">Sistemas</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-blue-900/50 border border-blue-800/50">Redes</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-blue-900/50 border border-blue-800/50">IT</span>
-              </div>
-            </div>
+          <!-- Contenido -->
+          <h3 class="text-2xl font-bold text-white mb-1">Sysadmin / Developer</h3>
+          <h4 class="text-xl text-indigo-400 font-medium mb-4">Espinaler</h4>
+          <p class="text-gray-300 mb-6">
+            Gestión de sistemas y redes de la empresa, asegurando su correcto funcionamiento y seguridad. 
+            Desarrollo de aplicaciones internas y soluciones personalizadas para optimizar procesos empresariales.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-indigo-900/30 border border-indigo-500/20 rounded-full text-sm text-indigo-300">
+              Administración de sistemas
+            </span>
+            <span class="px-3 py-1 bg-indigo-900/30 border border-indigo-500/20 rounded-full text-sm text-indigo-300">
+              Laravel
+            </span>
+            <span class="px-3 py-1 bg-indigo-900/30 border border-indigo-500/20 rounded-full text-sm text-indigo-300">
+              PHP
+            </span>
           </div>
         </div>
+      </div>
+
+      <!-- Trabajo 3 -->
+      <div class="relative mb-16 animate-on-scroll">
+        <!-- Círculo central -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-purple-500 border-4 border-secondary z-10"></div>
         
-        <!-- Item 3 -->
-        <div class="flex flex-col md:flex-row items-center animate-on-scroll">
-          <div class="md:w-1/2 md:pr-12 md:text-right mb-8 md:mb-0">
-            <div class="card hover:scale-105 transition-transform duration-300">
-              <h3 class="text-xl font-bold mb-2">Desarrollo de Aplicaciones Empresariales</h3>
-              <h4 class="text-primary font-medium mb-2">Proyecto Regional</h4>
-              <p class="text-gray-300">
-                Desarrollo de aplicaciones empresariales líderes en la región Balcánica, mejora de sistemas existentes y colaboración en proyectos.
-              </p>
-              <div class="flex flex-wrap gap-2 mt-4 md:justify-end">
-                <span class="px-3 py-1 text-xs rounded-full bg-blue-900/50 border border-blue-800/50">React</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-blue-900/50 border border-blue-800/50">Laravel</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-blue-900/50 border border-blue-800/50">Web</span>
-              </div>
-            </div>
-          </div>
+        <!-- Contenido del trabajo -->
+        <div class="ml-0 md:ml-auto md:mr-auto md:pl-16 md:w-1/2 md:-translate-x-8 glass-card hover-lift hover:border-purple-500/30 border border-purple-500/10 rounded-xl p-6 relative">
+          <!-- Línea conectora -->
+          <div class="hidden md:block absolute top-3 right-full w-16 h-0.5 bg-gradient-to-r from-transparent to-purple-500/50"></div>
           
-          <div class="hidden md:flex items-center justify-center z-10">
-            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-              </svg>
-            </div>
-          </div>
-          
-          <div class="md:w-1/2 md:pl-12">
-            <div class="text-lg font-medium text-gray-400 md:hidden mb-4">2020 - 2021</div>
-            <div class="text-lg font-medium text-gray-400 hidden md:block">2020 - 2021</div>
+          <!-- Contenido -->
+          <h3 class="text-2xl font-bold text-white mb-1">Especialista de IT</h3>
+          <h4 class="text-xl text-purple-400 font-medium mb-4">United Barcode Systems</h4>
+          <p class="text-gray-300 mb-6">
+            Soporte técnico especializado y gestión de infraestructura IT. Implementación de soluciones para la
+            identificación y trazabilidad de productos, integrando hardware y software específicos del sector.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-purple-900/30 border border-purple-500/20 rounded-full text-sm text-purple-300">
+              Soporte técnico
+            </span>
+            <span class="px-3 py-1 bg-purple-900/30 border border-purple-500/20 rounded-full text-sm text-purple-300">
+              Redes
+            </span>
+            <span class="px-3 py-1 bg-purple-900/30 border border-purple-500/20 rounded-full text-sm text-purple-300">
+              Integración de sistemas
+            </span>
           </div>
         </div>
+      </div>
+
+      <!-- Trabajo 4 -->
+      <div class="relative animate-on-scroll">
+        <!-- Círculo central -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-blue-400 border-4 border-secondary z-10"></div>
         
-        <!-- Item 4 -->
-        <div class="flex flex-col md:flex-row items-center animate-on-scroll">
-          <div class="md:w-1/2 md:pr-12 md:text-right order-1 md:order-1 mb-8 md:mb-0 hidden md:block">
-            <div class="text-lg font-medium text-gray-400">2019 - 2020</div>
-          </div>
+        <!-- Contenido del trabajo -->
+        <div class="ml-auto mr-0 md:mr-auto md:pr-16 md:w-1/2 md:translate-x-8 glass-card hover-lift hover:border-blue-400/30 border border-blue-400/10 rounded-xl p-6 relative">
+          <!-- Línea conectora -->
+          <div class="hidden md:block absolute top-3 left-full w-16 h-0.5 bg-gradient-to-l from-transparent to-blue-400/50"></div>
           
-          <div class="hidden md:flex items-center justify-center z-10 order-2 md:order-2">
-            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
-          </div>
-          
-          <div class="md:w-1/2 md:pl-12 order-3 md:order-3">
-            <div class="text-lg font-medium text-gray-400 md:hidden mb-4">2019 - 2020</div>
-            <div class="card hover:scale-105 transition-transform duration-300">
-              <h3 class="text-xl font-bold mb-2">Prácticas Formativas</h3>
-              <h4 class="text-primary font-medium mb-2">Varias empresas</h4>
-              <p class="text-gray-300">
-                Prácticas en dos empresas diferentes donde desarrollé habilidades técnicas en mantenimiento de equipos, configuración de redes y atención a usuarios.
-              </p>
-              <div class="flex flex-wrap gap-2 mt-4">
-                <span class="px-3 py-1 text-xs rounded-full bg-blue-900/50 border border-blue-800/50">Soporte</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-blue-900/50 border border-blue-800/50">Redes</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-blue-900/50 border border-blue-800/50">Hardware</span>
-              </div>
-            </div>
+          <!-- Contenido -->
+          <h3 class="text-2xl font-bold text-white mb-1">Intern Software Developer</h3>
+          <h4 class="text-xl text-blue-400 font-medium mb-4">E-Racuni</h4>
+          <p class="text-gray-300 mb-6">
+            Prácticas formativas en el desarrollo de software, colaborando en la implementación de soluciones digitales.
+            Aprendizaje práctico en entornos de desarrollo profesional y metodologías de trabajo en equipo.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-blue-900/30 border border-blue-400/20 rounded-full text-sm text-blue-300">
+              Java
+            </span>
+            <span class="px-3 py-1 bg-blue-900/30 border border-blue-400/20 rounded-full text-sm text-blue-300">
+              Spring Boot
+            </span>
+            <span class="px-3 py-1 bg-blue-900/30 border border-blue-400/20 rounded-full text-sm text-blue-300">
+              MySQL
+            </span>
           </div>
         </div>
       </div>
