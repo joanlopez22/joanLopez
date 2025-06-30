@@ -27,6 +27,10 @@
   h3 {
     @apply text-2xl md:text-3xl;
   }
+  
+  ::selection {
+    @apply bg-primary/30 text-white;
+  }
 }
 
 @layer components {
@@ -35,11 +39,11 @@
   }
 
   .btn-primary {
-    @apply bg-primary text-white hover:bg-blue-800;
+    @apply bg-primary text-white hover:bg-blue-800 shadow-md hover:shadow-lg hover:shadow-blue-900/30;
   }
 
   .btn-outline {
-    @apply border-2 border-primary text-white hover:bg-primary/20;
+    @apply border-2 border-primary text-white hover:bg-primary/20 shadow-sm hover:shadow-md hover:shadow-blue-900/20;
   }
 
   .section {
@@ -47,11 +51,19 @@
   }
 
   .card {
-    @apply bg-secondary/80 border border-gray-800 rounded-xl p-6 transition-all duration-300 hover:border-primary/50;
+    @apply bg-secondary/80 border border-gray-800 rounded-xl p-6 transition-all duration-300 hover:border-primary/50 backdrop-blur-sm;
   }
 
   .gradient-text {
     @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-600;
+  }
+  
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-xl shadow-xl;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
   }
 }
 
@@ -65,4 +77,34 @@
 .animate-on-scroll.visible {
   opacity: 1;
   transform: translateY(0);
+} 
+
+/* Nuevas animaciones */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.8); }
+  100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); }
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 15s linear infinite;
 } 
