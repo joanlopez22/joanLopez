@@ -74,7 +74,7 @@
                 </a>
                 <a href="#" class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/40 transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-primary">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.237 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                   </svg>
                 </a>
                 <a href="#" class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/40 transition-colors">
@@ -141,11 +141,30 @@
               ></textarea>
             </div>
             
+            <div class="mt-6">
+              <div class="flex items-start">
+                <div class="flex items-center h-5">
+                  <input
+                    id="privacy"
+                    name="privacy"
+                    type="checkbox"
+                    required
+                    class="w-4 h-4 bg-gray-900 border-gray-700 rounded focus:ring-primary focus:ring-2"
+                  />
+                </div>
+                <div class="ml-3 text-sm">
+                  <label for="privacy" class="text-gray-300">
+                    He leído y acepto la <button type="button" id="openPrivacyModal" class="text-primary hover:underline font-medium">Política de Privacidad</button>
+                  </label>
+                </div>
+              </div>
+            </div>
+            
             <div>
               <button 
                 type="submit" 
-                class="w-full btn btn-primary group"
                 id="submitBtn"
+                class="w-full btn btn-primary group"
               >
                 <span class="flex items-center justify-center">
                   Enviar Mensaje
@@ -166,7 +185,16 @@
   </div>
 </section>
 
+<!-- Script de Google reCAPTCHA v3 -->
+<script is:inline src="https://www.google.com/recaptcha/api.js?render=6LeMvXMrAAAAAEp0qnt_lauMtoVD1wtzViTAEEru"></script>
+
 <script>
+  // Definir el tipo para grecaptcha
+  declare const grecaptcha: {
+    ready: (callback: () => void) => void;
+    execute: (siteKey: string, options: { action: string }) => Promise<string>;
+  };
+
   document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contactForm') as HTMLFormElement;
     const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
@@ -177,55 +205,353 @@
     // URL del webhook de n8n
     const n8nWebhookUrl = 'https://jlopez5.app.n8n.cloud/webhook/joanlopezcontact';
     
+    // reCAPTCHA site key (clave real del sitio)
+    const recaptchaSiteKey = '6LeMvXMrAAAAAEp0qnt_lauMtoVD1wtzViTAEEru';
+    
+    // Ejecutar reCAPTCHA cuando se envíe el formulario
     if (contactForm && submitBtn && formStatus && successMessage && errorMessage) {
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // Deshabilitar el botón mientras se envía
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="flex items-center justify-center">Enviando... <svg class="animate-spin h-5 w-5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></span>';
+        // Verificar que se ha aceptado la política de privacidad
+        const privacyCheckbox = document.getElementById('privacy') as HTMLInputElement;
+        if (!privacyCheckbox.checked) {
+          formStatus.classList.remove('hidden');
+          errorMessage.classList.remove('hidden');
+          errorMessage.textContent = 'Debes aceptar la política de privacidad para continuar.';
+          successMessage.classList.add('hidden');
+          return;
+        }
         
-        // Recoger los datos del formulario
-        const formData = new FormData(contactForm);
-        const formDataObj: Record<string, string> = {};
-        formData.forEach((value, key) => {
-          formDataObj[key] = value.toString();
-        });
+        // Deshabilitar el botón mientras se ejecuta reCAPTCHA
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="flex items-center justify-center">Verificando... <svg class="animate-spin h-5 w-5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></span>';
         
         try {
-          // Enviar los datos a n8n
-          const response = await fetch(n8nWebhookUrl, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formDataObj)
+          // Ejecutar reCAPTCHA
+          grecaptcha.ready(function() {
+            grecaptcha.execute(recaptchaSiteKey, {action: 'submit'}).then(function(token) {
+              // Procesar el envío del formulario con el token
+              handleFormSubmit(token);
+            });
           });
-          
-          if (response.ok) {
-            // Mostrar mensaje de éxito
-            formStatus.classList.remove('hidden');
-            successMessage.classList.remove('hidden');
-            errorMessage.classList.add('hidden');
-            contactForm.reset();
-          } else {
-            // Mostrar mensaje de error
-            formStatus.classList.remove('hidden');
-            errorMessage.classList.remove('hidden');
-            successMessage.classList.add('hidden');
-          }
         } catch (error) {
-          console.error('Error al enviar el formulario:', error);
+          console.error('Error con reCAPTCHA:', error);
+          // Mostrar mensaje de error
+          formStatus.classList.remove('hidden');
+          errorMessage.classList.remove('hidden');
+          errorMessage.textContent = 'Error al verificar reCAPTCHA. Por favor, inténtalo de nuevo.';
+          successMessage.classList.add('hidden');
+          
+          // Restaurar el botón
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<span class="flex items-center justify-center">Enviar Mensaje <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H3a1 1 0 110-2h9.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></span>';
+        }
+      });
+    }
+    
+    async function handleFormSubmit(token: string) {
+      // Cambiar el texto del botón a "Enviando"
+      submitBtn.innerHTML = '<span class="flex items-center justify-center">Enviando... <svg class="animate-spin h-5 w-5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></span>';
+      
+      // Recoger los datos del formulario
+      const formData = new FormData(contactForm);
+      const formDataObj: Record<string, string> = {};
+      formData.forEach((value, key) => {
+        formDataObj[key] = value.toString();
+      });
+      
+      // Añadir la respuesta del captcha a los datos
+      formDataObj['g-recaptcha-response'] = token;
+      
+      try {
+        // Enviar los datos a n8n
+        const response = await fetch(n8nWebhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formDataObj)
+        });
+        
+        if (response.ok) {
+          // Mostrar mensaje de éxito
+          formStatus.classList.remove('hidden');
+          successMessage.classList.remove('hidden');
+          errorMessage.classList.add('hidden');
+          contactForm.reset();
+        } else {
           // Mostrar mensaje de error
           formStatus.classList.remove('hidden');
           errorMessage.classList.remove('hidden');
           successMessage.classList.add('hidden');
         }
-        
-        // Restaurar el botón
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span class="flex items-center justify-center">Enviar Mensaje <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H3a1 1 0 110-2h9.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></span>';
-      });
+      } catch (error) {
+        console.error('Error al enviar el formulario:', error);
+        // Mostrar mensaje de error
+        formStatus.classList.remove('hidden');
+        errorMessage.classList.remove('hidden');
+        successMessage.classList.add('hidden');
+      }
+      
+      // Restaurar el botón
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span class="flex items-center justify-center">Enviar Mensaje <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H3a1 1 0 110-2h9.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></span>';
     }
   });
-</script> 
+</script>
+
+<style>
+  /* Ocultar el badge de reCAPTCHA */
+  .grecaptcha-badge {
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+  
+  /* Estilos para el modal */
+  #privacyModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 20px;
+  }
+  
+  .modal-content {
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(30, 58, 138, 0.95));
+    backdrop-filter: blur(8px);
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 800px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: modalFadeIn 0.3s ease-out;
+  }
+  
+  @keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .modal-body {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+  
+  .modal-body::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .modal-body::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+  
+  .modal-body::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.6);
+    border-radius: 10px;
+  }
+  
+  .modal-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .close-modal-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
+    transition: all 0.2s;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .close-modal-btn:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .modal-body h3 {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .modal-body p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+  
+  .modal-body ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .modal-body li {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.5rem;
+  }
+</style>
+
+<!-- Modal de política de privacidad -->
+<div id="privacyModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="text-2xl font-bold text-white">Política de Privacidad</h2>
+      <button id="closePrivacyModal" class="close-modal-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Última actualización: <span id="currentDate"></span></p>
+      
+      <h3>1. Información que recopilamos</h3>
+      <p>Cuando utiliza el formulario de contacto de nuestro sitio web, recopilamos la siguiente información personal que usted proporciona voluntariamente:</p>
+      <ul>
+        <li>Nombre</li>
+        <li>Dirección de correo electrónico</li>
+        <li>Asunto del mensaje</li>
+        <li>Contenido del mensaje</li>
+      </ul>
+      
+      <h3>2. Cómo utilizamos su información</h3>
+      <p>La información que recopilamos se utiliza únicamente para los siguientes propósitos:</p>
+      <ul>
+        <li>Responder a sus consultas, comentarios o solicitudes</li>
+        <li>Proporcionarle información sobre nuestros servicios que haya solicitado</li>
+        <li>Mejorar la experiencia del usuario en nuestro sitio web</li>
+        <li>Proteger nuestro sitio web contra actividades fraudulentas o maliciosas</li>
+      </ul>
+      <p>No compartiremos, venderemos, alquilaremos ni revelaremos su información personal a terceros, excepto cuando sea necesario para cumplir con las leyes aplicables o para proteger nuestros derechos legales.</p>
+      
+      <h3>3. Base legal para el procesamiento</h3>
+      <p>Procesamos sus datos personales con base en su consentimiento explícito al marcar la casilla correspondiente antes de enviar el formulario de contacto, de acuerdo con el Reglamento General de Protección de Datos (RGPD) de la UE.</p>
+      
+      <h3>4. Almacenamiento y seguridad de datos</h3>
+      <p>Sus datos personales se almacenan en servidores seguros y se mantienen solo durante el tiempo necesario para cumplir con los propósitos para los que fueron recopilados o según lo exija la ley aplicable.</p>
+      <p>Implementamos medidas de seguridad técnicas y organizativas apropiadas para proteger sus datos personales contra el acceso, uso, divulgación, alteración o destrucción no autorizados.</p>
+      
+      <h3>5. Sus derechos</h3>
+      <p>De acuerdo con el RGPD y otras leyes de protección de datos aplicables, usted tiene los siguientes derechos con respecto a sus datos personales:</p>
+      <ul>
+        <li>Derecho de acceso a sus datos personales</li>
+        <li>Derecho a rectificar datos inexactos</li>
+        <li>Derecho a la eliminación de sus datos ("derecho al olvido")</li>
+        <li>Derecho a restringir el procesamiento de sus datos</li>
+        <li>Derecho a la portabilidad de datos</li>
+        <li>Derecho a oponerse al procesamiento</li>
+        <li>Derecho a retirar su consentimiento en cualquier momento</li>
+      </ul>
+      <p>Para ejercer cualquiera de estos derechos, por favor contáctenos a través de los datos de contacto proporcionados en este sitio web.</p>
+      
+      <h3>6. Uso de cookies y tecnologías similares</h3>
+      <p>Nuestro sitio web utiliza Google reCAPTCHA para proteger nuestro formulario de contacto contra spam y abuso. Esta tecnología puede recopilar cierta información técnica sobre su dispositivo y su comportamiento en nuestro sitio web para determinar si usted es un usuario humano o un bot automatizado.</p>
+      <p>Para más información sobre cómo Google procesa sus datos, consulte la <a href="https://policies.google.com/privacy" target="_blank" class="text-primary hover:underline">Política de Privacidad de Google</a>.</p>
+      
+      <h3>7. Transferencias internacionales de datos</h3>
+      <p>Sus datos personales pueden ser transferidos y procesados en países fuera del Espacio Económico Europeo (EEE) que pueden no proporcionar el mismo nivel de protección de datos. En tales casos, nos aseguramos de que existan salvaguardas adecuadas para proteger sus datos personales de acuerdo con esta política de privacidad y las leyes aplicables.</p>
+      
+      <h3>8. Cambios a esta política de privacidad</h3>
+      <p>Podemos actualizar esta política de privacidad periódicamente para reflejar cambios en nuestras prácticas de información o para cumplir con requisitos legales. La versión más reciente estará siempre disponible en nuestro sitio web con la fecha de la última actualización.</p>
+      
+      <h3>9. Cómo contactarnos</h3>
+      <p>Si tiene alguna pregunta, comentario o solicitud relacionada con esta política de privacidad o el procesamiento de sus datos personales, no dude en ponerse en contacto con nosotros a través de la información de contacto proporcionada en este sitio web.</p>
+    </div>
+    <div class="modal-footer">
+      <button id="acceptPrivacyPolicy" class="btn btn-primary">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Script para manejar el modal de política de privacidad
+  document.addEventListener('DOMContentLoaded', () => {
+    const privacyModal = document.getElementById('privacyModal');
+    const openPrivacyModal = document.getElementById('openPrivacyModal');
+    const closePrivacyModal = document.getElementById('closePrivacyModal');
+    const acceptPrivacyPolicy = document.getElementById('acceptPrivacyPolicy');
+    const privacyCheckbox = document.getElementById('privacy') as HTMLInputElement;
+    const currentDateElement = document.getElementById('currentDate');
+    
+    // Establecer la fecha actual
+    if (currentDateElement) {
+      const now = new Date();
+      currentDateElement.textContent = now.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+    
+    // Abrir el modal
+    if (openPrivacyModal && privacyModal) {
+      openPrivacyModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        privacyModal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+      });
+    }
+    
+    // Cerrar el modal
+    if (closePrivacyModal && privacyModal) {
+      closePrivacyModal.addEventListener('click', () => {
+        privacyModal.style.display = 'none';
+        document.body.style.overflow = ''; // Restaurar scroll del body
+      });
+    }
+    
+    // Cerrar el modal al hacer clic fuera de su contenido
+    if (privacyModal) {
+      privacyModal.addEventListener('click', (e) => {
+        if (e.target === privacyModal) {
+          privacyModal.style.display = 'none';
+          document.body.style.overflow = ''; // Restaurar scroll del body
+        }
+      });
+    }
+    
+    // Aceptar política de privacidad
+    if (acceptPrivacyPolicy && privacyModal && privacyCheckbox) {
+      acceptPrivacyPolicy.addEventListener('click', () => {
+        privacyCheckbox.checked = true;
+        privacyModal.style.display = 'none';
+        document.body.style.overflow = ''; // Restaurar scroll del body
+      });
+    }
+    
+    // Cerrar el modal con tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && privacyModal && privacyModal.style.display === 'block') {
+        privacyModal.style.display = 'none';
+        document.body.style.overflow = ''; // Restaurar scroll del body
+      }
+    });
+  });
+</script>
