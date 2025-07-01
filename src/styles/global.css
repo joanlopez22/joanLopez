@@ -39,11 +39,29 @@
   }
 
   .btn-primary {
-    @apply bg-primary text-white hover:bg-blue-800 shadow-md hover:shadow-lg hover:shadow-blue-900/30;
+    @apply bg-primary text-white hover:bg-blue-800 shadow-md hover:shadow-lg hover:shadow-blue-900/30 relative overflow-hidden;
+  }
+  
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-white/20 scale-x-0 origin-left transition-transform duration-500;
+  }
+  
+  .btn-primary:hover::before {
+    @apply scale-x-100;
   }
 
   .btn-outline {
-    @apply border-2 border-primary text-white hover:bg-primary/20 shadow-sm hover:shadow-md hover:shadow-blue-900/20;
+    @apply border-2 border-primary text-white hover:bg-primary/20 shadow-sm hover:shadow-md hover:shadow-blue-900/20 relative overflow-hidden;
+  }
+  
+  .btn-outline::before {
+    content: '';
+    @apply absolute inset-0 bg-primary/10 scale-x-0 origin-left transition-transform duration-500;
+  }
+  
+  .btn-outline:hover::before {
+    @apply scale-x-100;
   }
 
   .section {
@@ -65,13 +83,30 @@
   .hover-lift {
     @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
   }
+  
+  .badge {
+    @apply px-3 py-1 text-xs rounded-full bg-blue-900/30 border border-blue-800/30 text-blue-300 flex items-center;
+  }
+  
+  .tech-badge {
+    @apply px-3 py-1.5 text-xs rounded-full bg-blue-900/20 border border-blue-800/20 text-blue-300 flex items-center gap-1.5 hover:bg-blue-900/30 hover:border-blue-700/30 transition-all duration-300;
+  }
+  
+  .section-title {
+    @apply relative inline-block;
+  }
+  
+  .section-title::after {
+    content: '';
+    @apply absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full;
+  }
 }
 
 /* Animaciones personalizadas */
 .animate-on-scroll {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.7s ease-out;
+  transform: translateY(30px);
+  transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .animate-on-scroll.visible {
@@ -107,4 +142,106 @@
 
 .animate-rotate-slow {
   animation: rotate-slow 15s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, 
+    rgba(59, 130, 246, 0) 0%, 
+    rgba(59, 130, 246, 0.3) 25%, 
+    rgba(59, 130, 246, 0.5) 50%, 
+    rgba(59, 130, 246, 0.3) 75%, 
+    rgba(59, 130, 246, 0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+@keyframes pulse-border {
+  0% { border-color: rgba(59, 130, 246, 0.3); }
+  50% { border-color: rgba(59, 130, 246, 0.8); }
+  100% { border-color: rgba(59, 130, 246, 0.3); }
+}
+
+.animate-pulse-border {
+  animation: pulse-border 2s infinite;
+}
+
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.animate-typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 2.5s steps(40, end) forwards;
+}
+
+/* Decoraciones de fondo */
+.bg-grid {
+  background-image: 
+    linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-dots {
+  background-image: radial-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Efectos de hover */
+.hover-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  transform: skewX(-25deg);
+  transition: all 0.75s;
+}
+
+.hover-shine:hover::before {
+  left: 125%;
+}
+
+/* Efectos de texto */
+.text-gradient-animate {
+  background-size: 200% auto;
+  background-image: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd, #60a5fa, #3b82f6);
+  animation: gradient 8s linear infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Mejoras de accesibilidad */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary;
 } 

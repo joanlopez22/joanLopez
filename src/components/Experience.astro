@@ -11,16 +11,30 @@
     <div class="hidden lg:block absolute top-20 left-20 w-64 h-64 rounded-full bg-blue-900/10 filter blur-3xl"></div>
     <div class="hidden lg:block absolute bottom-20 right-20 w-64 h-64 rounded-full bg-indigo-900/10 filter blur-3xl"></div>
     <div class="hidden lg:block absolute bottom-1/3 left-1/3 w-3 h-3 bg-primary/30 rounded-full opacity-70 animate-float" style="animation-delay: 1s;"></div>
+    <div class="hidden lg:block absolute top-1/4 right-1/4 w-2 h-2 bg-blue-500/30 rounded-full opacity-70 animate-float" style="animation-delay: 2s;"></div>
+    <div class="hidden lg:block absolute bottom-1/4 right-1/3 w-4 h-4 bg-indigo-500/30 rounded-full opacity-70 animate-float" style="animation-delay: 3s;"></div>
+    
+    <!-- Patrón de puntos decorativo -->
+    <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
   </div>
   
-  <!-- Línea decorativa superior -->
+  <!-- Líneas decorativas -->
   <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent"></div>
   
   <div class="container mx-auto px-4 md:px-8">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+    <div class="text-center mb-16 animate-fade-in-up">
+      <div class="inline-flex items-center justify-center mb-4">
+        <span class="badge-shine">Trayectoria profesional</span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 relative">
         <span class="text-white">Experiencia</span>
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700"> Profesional</span>
+        <div class="absolute -right-8 top-0 w-6 h-6 text-blue-500 animate-pulse-slow hidden md:block">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+        </div>
       </h2>
       <div class="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mx-auto mb-8"></div>
       <p class="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -35,39 +49,63 @@
 
       <!-- Trabajo 1 -->
       <div class="relative mb-16 animate-on-scroll">
-        <!-- Círculo central -->
-        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-blue-500 border-4 border-secondary z-10"></div>
+        <!-- Círculo central con animación -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-blue-500 border-4 border-secondary z-10">
+          <div class="absolute inset-0 rounded-full animate-ping-slow bg-blue-500 opacity-50"></div>
+        </div>
         
         <!-- Contenido del trabajo -->
-        <div class="ml-0 md:ml-auto md:mr-auto md:pl-16 md:w-1/2 md:-translate-x-8 glass-card hover-lift hover:border-blue-500/30 border border-blue-500/10 rounded-xl p-6 relative">
-          <!-- Línea conectora -->
-          <div class="hidden md:block absolute top-3 right-full w-16 h-0.5 bg-gradient-to-r from-transparent to-blue-500/50"></div>
+        <div class="ml-0 md:ml-auto md:mr-auto md:pl-16 md:w-1/2 md:-translate-x-8 glass-card hover-lift hover:border-blue-500/30 border border-blue-500/10 rounded-xl p-6 relative group">
+          <!-- Línea conectora con animación -->
+          <div class="hidden md:block absolute top-3 right-full w-16 h-0.5 bg-gradient-to-r from-transparent to-blue-500/50 group-hover:to-blue-400"></div>
           
-          <!-- Badge del año -->
-          <div class="absolute -top-4 left-4 px-3 py-1 bg-blue-500/20 text-blue-400 text-sm font-medium rounded-full">
-            Actual
+          <!-- Badge del año con efecto -->
+          <div class="absolute -top-4 left-4 px-3 py-1 bg-blue-500/20 backdrop-blur-sm text-blue-400 text-sm font-medium rounded-full border border-blue-500/20 shadow-glow-sm shadow-blue-500/20">
+            <div class="absolute top-0 right-0 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+            <span class="ml-1">Actual</span>
           </div>
           
           <!-- Contenido -->
-          <h3 class="text-2xl font-bold text-white mb-1">FullStack Developer Junior</h3>
-          <h4 class="text-xl text-blue-400 font-medium mb-4">AgriNews</h4>
-          <p class="text-gray-300 mb-6">
+          <div class="flex items-start mb-4">
+            <div class="mr-4">
+              <div class="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">FullStack Developer Junior</h3>
+              <h4 class="text-xl text-blue-400 font-medium mb-1 flex items-center">
+                AgriNews
+                <span class="ml-2 text-sm text-gray-400">2023 - Presente</span>
+              </h4>
+            </div>
+          </div>
+          
+          <p class="text-gray-300 mb-6 border-l-2 border-blue-500/30 pl-4">
             Desarrollo de aplicaciones web utilizando tecnologías modernas. Colaboración en proyectos de transformación digital del sector agrícola.
           </p>
+          
           <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-blue-900/30 border border-blue-500/20 rounded-full text-sm text-blue-300">
+            <span class="tech-badge bg-blue-900/30 border border-blue-500/20 text-blue-300 group-hover:border-blue-500/40 transition-colors">
+              <i class="devicon-react-original text-blue-400 mr-1"></i>
               React
             </span>
-            <span class="px-3 py-1 bg-blue-900/30 border border-blue-500/20 rounded-full text-sm text-blue-300">
+            <span class="tech-badge bg-blue-900/30 border border-blue-500/20 text-blue-300 group-hover:border-blue-500/40 transition-colors">
+              <i class="devicon-nodejs-plain text-green-400 mr-1"></i>
               Node.js
             </span>
-            <span class="px-3 py-1 bg-blue-900/30 border border-blue-500/20 rounded-full text-sm text-blue-300">
+            <span class="tech-badge bg-blue-900/30 border border-blue-500/20 text-blue-300 group-hover:border-blue-500/40 transition-colors">
+              <i class="devicon-php-plain text-indigo-400 mr-1"></i>
               PHP
             </span>
-            <span class="px-3 py-1 bg-blue-900/30 border border-blue-500/20 rounded-full text-sm text-blue-300">
+            <span class="tech-badge bg-blue-900/30 border border-blue-500/20 text-blue-300 group-hover:border-blue-500/40 transition-colors">
+              <i class="devicon-javascript-plain text-yellow-400 mr-1"></i>
               JavaScript
             </span>
-            <span class="px-3 py-1 bg-blue-900/30 border border-blue-500/20 rounded-full text-sm text-blue-300">
+            <span class="tech-badge bg-blue-900/30 border border-blue-500/20 text-blue-300 group-hover:border-blue-500/40 transition-colors">
+              <i class="devicon-html5-plain text-orange-400 mr-1"></i>
               HTML/CSS
             </span>
           </div>
@@ -184,6 +222,16 @@
           </div>
         </div>
       </div>
+    </div>
+    
+    <!-- Botón de descarga del CV -->
+    <div class="flex justify-center mt-16 animate-on-scroll" style="animation-delay: 400ms;">
+      <a href="#" class="btn btn-primary px-8 py-3 flex items-center gap-2 group hover-shine">
+        <span class="relative z-10">Descargar CV completo</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:translate-y-1 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </a>
     </div>
   </div>
 </section> 

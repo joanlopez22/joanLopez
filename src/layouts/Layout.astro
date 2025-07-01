@@ -30,11 +30,24 @@ const {
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 	</head>
 	<body class="bg-secondary text-light min-h-screen">
-		<div class="fixed inset-0 -z-10 h-full w-full bg-black">
-			<div class="absolute top-0 -left-4 w-72 h-72 bg-primary/30 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-			<div class="absolute -bottom-8 right-0 w-72 h-72 bg-primary/30 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-			<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-700/20 rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+		<!-- Fondo mejorado con efectos visuales -->
+		<div class="fixed inset-0 -z-10 h-full w-full bg-black bg-dots">
+			<!-- Gradientes de fondo -->
+			<div class="absolute top-0 -left-4 w-72 h-72 bg-primary/30 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style="animation-delay: 0s;"></div>
+			<div class="absolute -bottom-8 right-0 w-72 h-72 bg-primary/30 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style="animation-delay: 1s;"></div>
+			<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-700/20 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float" style="animation-delay: 2s;"></div>
+			
+			<!-- Líneas decorativas -->
+			<div class="absolute top-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/10 to-transparent"></div>
+			<div class="absolute bottom-1/4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/10 to-transparent"></div>
+			
+			<!-- Partículas decorativas -->
+			<div class="particles-container absolute inset-0 overflow-hidden opacity-30"></div>
+			
+			<!-- Efecto de ruido sutil -->
+			<div class="absolute inset-0 bg-noise opacity-[0.03] mix-blend-overlay"></div>
 		</div>
+		
 		<slot />
 
 		<script>
@@ -43,13 +56,15 @@ const {
 				const observerOptions = {
 					root: null,
 					rootMargin: '0px',
-					threshold: 0.1
+					threshold: 0.15
 				};
 				
 				const observer = new IntersectionObserver((entries) => {
 					entries.forEach(entry => {
 						if (entry.isIntersecting) {
 							entry.target.classList.add('visible');
+							// Desconectar el observer después de mostrar el elemento
+							observer.unobserve(entry.target);
 						}
 					});
 				}, observerOptions);
@@ -57,6 +72,28 @@ const {
 				document.querySelectorAll('.animate-on-scroll').forEach(el => {
 					observer.observe(el);
 				});
+				
+				// Crear partículas decorativas
+				const particlesContainer = document.querySelector('.particles-container');
+				if (particlesContainer) {
+					const particleCount = window.innerWidth < 768 ? 15 : 30;
+					
+					for (let i = 0; i < particleCount; i++) {
+						const particle = document.createElement('div');
+						const size = Math.random() * 3 + 1;
+						
+						particle.classList.add('particle');
+						particle.style.width = `${size}px`;
+						particle.style.height = `${size}px`;
+						particle.style.left = `${Math.random() * 100}%`;
+						particle.style.top = `${Math.random() * 100}%`;
+						particle.style.opacity = `${Math.random() * 0.5 + 0.3}`;
+						particle.style.animationDelay = `${Math.random() * 5}s`;
+						particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+						
+						particlesContainer.appendChild(particle);
+					}
+				}
 			});
 		</script>
 	</body>
@@ -68,5 +105,38 @@ const {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+	}
+	
+	/* Efecto de ruido para el fondo */
+	.bg-noise {
+		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+		background-size: 200px;
+	}
+	
+	/* Estilos para partículas */
+	.particle {
+		position: absolute;
+		background-color: #3b82f6;
+		border-radius: 50%;
+		pointer-events: none;
+		animation: float-particle 15s infinite linear;
+	}
+	
+	@keyframes float-particle {
+		0% {
+			transform: translateY(0) translateX(0);
+		}
+		25% {
+			transform: translateY(-30px) translateX(20px);
+		}
+		50% {
+			transform: translateY(-10px) translateX(40px);
+		}
+		75% {
+			transform: translateY(-40px) translateX(10px);
+		}
+		100% {
+			transform: translateY(0) translateX(0);
+		}
 	}
 </style>
