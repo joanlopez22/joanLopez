@@ -3,8 +3,8 @@
 ---
 
 <section id="about" class="py-24 relative overflow-hidden">
-  <!-- Fondo minimalista -->
-  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-secondary to-secondary/95"></div>
+  <!-- Fondo minimalista adaptado para modo claro/oscuro -->
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-gray-50 to-white dark:from-secondary dark:to-secondary/95 transition-colors duration-300"></div>
   
   <!-- Línea decorativa sutil -->
   <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/10 to-transparent"></div>
@@ -12,11 +12,11 @@
   <div class="container mx-auto px-4 md:px-8">
     <div class="text-center mb-16 animate-fade-in-up">
       <h2 class="text-3xl md:text-4xl font-bold mb-5">
-        <span class="text-white">Sobre</span>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600"> Mí</span>
+        <span class="text-gray-900 dark:text-white transition-colors duration-300">Sobre</span>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700 dark:from-blue-400 dark:to-blue-600"> Mí</span>
       </h2>
       <div class="w-16 h-0.5 bg-blue-500/40 mx-auto mb-8"></div>
-      <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+      <p class="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto transition-colors duration-300">
         Desarrollador FullStack con pasión por la innovación tecnológica y el crecimiento profesional.
       </p>
     </div>
@@ -24,38 +24,38 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
       <!-- Perfil Profesional -->
       <div class="animate-on-scroll">
-        <div class="bg-white/[0.03] backdrop-blur-sm p-6 rounded-lg border border-white/[0.05] hover:border-blue-600/20 transition-all duration-300">
+        <div class="bg-white dark:bg-white/[0.03] backdrop-blur-sm p-6 rounded-lg border border-gray-200 dark:border-white/[0.05] hover:border-blue-500/20 dark:hover:border-blue-600/20 transition-all duration-300 shadow-sm dark:shadow-none">
           <div class="space-y-5">
             <div class="flex items-center mb-4">
-              <h3 class="text-xl font-semibold text-white">Perfil Profesional</h3>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white transition-colors duration-300">Perfil Profesional</h3>
             </div>
             
-            <p class="text-gray-300 border-l border-blue-500/30 pl-4">
+            <p class="text-gray-700 dark:text-gray-300 border-l border-blue-500/30 pl-4 transition-colors duration-300">
               Soy un Desarrollador FullStack recién graduado de DAM (Desarrollo de Aplicaciones Multiplataforma) y técnico en SIR/SMX con 2.5 años de experiencia en Barcelona.
             </p>
             
-            <p class="text-gray-300 border-l border-blue-500/30 pl-4">
-              Actualmente trabajo como <span class="text-blue-400 font-medium">Desarrollador FullStack</span> en AgriNews, donde me estoy formando en <span class="text-blue-400 font-medium">.NET, IA y backend</span>. Mi objetivo es seguir creciendo profesionalmente y aportar soluciones innovadoras.
+            <p class="text-gray-700 dark:text-gray-300 border-l border-blue-500/30 pl-4 transition-colors duration-300">
+              Actualmente trabajo como <span class="text-blue-600 dark:text-blue-400 font-medium transition-colors duration-300">Desarrollador FullStack</span> en AgriNews, donde me estoy formando en <span class="text-blue-600 dark:text-blue-400 font-medium transition-colors duration-300">.NET, IA y backend</span>. Mi objetivo es seguir creciendo profesionalmente y aportar soluciones innovadoras.
             </p>
             
             <!-- Habilidades personales - Versión simplificada -->
             <div class="pt-6">
-              <h4 class="text-lg font-medium mb-4 flex items-center">
+              <h4 class="text-lg font-medium mb-4 flex items-center text-gray-800 dark:text-gray-200 transition-colors duration-300">
                 <div class="w-1 h-5 bg-blue-500 rounded-full mr-2"></div>
                 Habilidades personales
               </h4>
               <div class="grid grid-cols-2 gap-3">
-                <div class="bg-white/[0.02] border border-white/[0.05] rounded-md p-2.5 flex items-center">
-                  <span class="text-gray-300">Trabajo en equipo</span>
+                <div class="bg-gray-50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/[0.05] rounded-md p-2.5 flex items-center transition-colors duration-300">
+                  <span class="text-gray-700 dark:text-gray-300 transition-colors duration-300">Trabajo en equipo</span>
                 </div>
-                <div class="bg-white/[0.02] border border-white/[0.05] rounded-md p-2.5 flex items-center">
-                  <span class="text-gray-300">Comunicación</span>
+                <div class="bg-gray-50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/[0.05] rounded-md p-2.5 flex items-center transition-colors duration-300">
+                  <span class="text-gray-700 dark:text-gray-300 transition-colors duration-300">Comunicación</span>
                 </div>
-                <div class="bg-white/[0.02] border border-white/[0.05] rounded-md p-2.5 flex items-center">
-                  <span class="text-gray-300">Resolución de problemas</span>
+                <div class="bg-gray-50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/[0.05] rounded-md p-2.5 flex items-center transition-colors duration-300">
+                  <span class="text-gray-700 dark:text-gray-300 transition-colors duration-300">Resolución de problemas</span>
                 </div>
-                <div class="bg-white/[0.02] border border-white/[0.05] rounded-md p-2.5 flex items-center">
-                  <span class="text-gray-300">Adaptabilidad</span>
+                <div class="bg-gray-50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/[0.05] rounded-md p-2.5 flex items-center transition-colors duration-300">
+                  <span class="text-gray-700 dark:text-gray-300 transition-colors duration-300">Adaptabilidad</span>
                 </div>
               </div>
             </div>
@@ -66,44 +66,44 @@
       <!-- Columna derecha -->
       <div class="animate-on-scroll space-y-5">
         <!-- Experiencia laboral -->
-        <div class="bg-white/[0.03] backdrop-blur-sm p-6 rounded-lg border border-white/[0.05] hover:border-blue-600/20 transition-all duration-300">
+        <div class="bg-white dark:bg-white/[0.03] backdrop-blur-sm p-6 rounded-lg border border-gray-200 dark:border-white/[0.05] hover:border-blue-500/20 dark:hover:border-blue-600/20 transition-all duration-300 shadow-sm dark:shadow-none">
           <div class="flex items-center mb-3">
-            <h3 class="text-xl font-semibold text-white">Experiencia laboral</h3>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white transition-colors duration-300">Experiencia laboral</h3>
           </div>
-          <p class="text-gray-300 border-l border-blue-500/30 pl-4">
+          <p class="text-gray-700 dark:text-gray-300 border-l border-blue-500/30 pl-4 transition-colors duration-300">
             2.5 años de experiencia como desarrollador y administrador de sistemas, trabajando en diversas empresas y proyectos con tecnologías modernas.
           </p>
         </div>
         
         <!-- Formación académica -->
-        <div class="bg-white/[0.03] backdrop-blur-sm p-6 rounded-lg border border-white/[0.05] hover:border-blue-600/20 transition-all duration-300">
+        <div class="bg-white dark:bg-white/[0.03] backdrop-blur-sm p-6 rounded-lg border border-gray-200 dark:border-white/[0.05] hover:border-blue-500/20 dark:hover:border-blue-600/20 transition-all duration-300 shadow-sm dark:shadow-none">
           <div class="flex items-center mb-3">
-            <h3 class="text-xl font-semibold text-white">Formación académica</h3>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white transition-colors duration-300">Formación académica</h3>
           </div>
-          <p class="text-gray-300 border-l border-blue-500/30 pl-4">
+          <p class="text-gray-700 dark:text-gray-300 border-l border-blue-500/30 pl-4 transition-colors duration-300">
             Graduado en Desarrollo de Aplicaciones Multiplataforma (DAM) y técnico en Sistemas y Redes, con formación continua en tecnologías emergentes.
           </p>
           
           <!-- Badge simplificados -->
           <div class="mt-4 flex flex-wrap gap-2">
-            <span class="px-3 py-1 text-xs rounded-md bg-blue-900/10 border border-blue-800/10 text-blue-300">DAM</span>
-            <span class="px-3 py-1 text-xs rounded-md bg-blue-900/10 border border-blue-800/10 text-blue-300">SIR/SMX</span>
+            <span class="px-3 py-1 text-xs rounded-md bg-blue-100 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-800/10 text-blue-700 dark:text-blue-300 transition-colors duration-300">DAM</span>
+            <span class="px-3 py-1 text-xs rounded-md bg-blue-100 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-800/10 text-blue-700 dark:text-blue-300 transition-colors duration-300">SIR/SMX</span>
           </div>
         </div>
         
         <!-- Objetivos profesionales -->
-        <div class="bg-white/[0.03] backdrop-blur-sm p-6 rounded-lg border border-white/[0.05] hover:border-blue-600/20 transition-all duration-300">
+        <div class="bg-white dark:bg-white/[0.03] backdrop-blur-sm p-6 rounded-lg border border-gray-200 dark:border-white/[0.05] hover:border-blue-500/20 dark:hover:border-blue-600/20 transition-all duration-300 shadow-sm dark:shadow-none">
           <div class="flex items-center mb-3">
-            <h3 class="text-xl font-semibold text-white">Objetivos profesionales</h3>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white transition-colors duration-300">Objetivos profesionales</h3>
           </div>
-          <p class="text-gray-300 border-l border-blue-500/30 pl-4">
+          <p class="text-gray-700 dark:text-gray-300 border-l border-blue-500/30 pl-4 transition-colors duration-300">
             Especializarme en desarrollo full stack con tecnologías modernas, profundizando en la integración de IA en aplicaciones web y contribuir a proyectos innovadores.
           </p>
           
           <!-- Badge simplificados -->
           <div class="mt-4 flex flex-wrap gap-2">
-            <span class="px-3 py-1 text-xs rounded-md bg-blue-900/10 border border-blue-800/10 text-blue-300">Desarrollo Full Stack</span>
-            <span class="px-3 py-1 text-xs rounded-md bg-blue-900/10 border border-blue-800/10 text-blue-300">IA</span>
+            <span class="px-3 py-1 text-xs rounded-md bg-blue-100 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-800/10 text-blue-700 dark:text-blue-300 transition-colors duration-300">Desarrollo Full Stack</span>
+            <span class="px-3 py-1 text-xs rounded-md bg-blue-100 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-800/10 text-blue-700 dark:text-blue-300 transition-colors duration-300">IA</span>
           </div>
         </div>
       </div>

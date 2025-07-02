@@ -35,9 +35,9 @@ const techCategories = [
 ];
 ---
 
-<section id="technologies" class="py-20 relative overflow-hidden">
+<section id="technologies" class="py-20 relative overflow-hidden dark:bg-dark-950 bg-light-100 transition-colors duration-300">
   <!-- Background Grid y Efectos -->
-  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-secondary via-secondary/95 to-black/80"></div>
+  <div class="absolute inset-0 -z-10 dark:bg-gradient-to-b dark:from-secondary dark:via-secondary/95 dark:to-black/80 bg-gradient-to-b from-light-100 via-light-200 to-light-300"></div>
   
   <!-- Partículas de fondo -->
   <div class="absolute inset-0 -z-10">
@@ -64,7 +64,7 @@ const techCategories = [
   <div class="container mx-auto px-4 md:px-8">
     <div class="text-center mb-16 animate-fade-in-up">
       <h2 class="text-4xl md:text-5xl font-bold mb-6 relative">
-        <span class="text-white">Tecnologías y</span>
+        <span class="dark:text-white text-dark-800">Tecnologías y</span>
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700"> Herramientas</span>
         <div class="absolute -right-8 top-0 w-6 h-6 text-blue-500 animate-spin-slow hidden md:block opacity-70">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -74,7 +74,7 @@ const techCategories = [
         </div>
       </h2>
       <div class="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mb-8"></div>
-      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+      <p class="text-xl dark:text-gray-300 text-gray-600 max-w-3xl mx-auto">
         Experiencia en múltiples tecnologías para crear soluciones completas y eficientes.
       </p>
     </div>
@@ -123,20 +123,20 @@ const techCategories = [
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {category.techs.map((tech, techIndex) => (
             <div class="group animate-on-scroll" style={`animation-delay: ${techIndex * 50}ms`}>
-              <div class={`bg-secondary/60 backdrop-blur-md rounded-2xl p-6 border border-${category.color}-500/10 transform transition-all duration-300 hover:scale-105 hover:border-${category.color}-500/30 flex flex-col items-center hover:bg-${category.color}-900/20 hover:shadow-lg hover:shadow-${category.color}-500/10`}>
+              <div class={`dark:bg-secondary/60 bg-white/90 backdrop-blur-md rounded-2xl p-6 border border-${category.color}-500/10 transform transition-all duration-300 hover:scale-105 hover:border-${category.color}-500/30 flex flex-col items-center hover:bg-${category.color}-50 dark:hover:bg-${category.color}-900/20 hover:shadow-lg hover:shadow-${category.color}-500/10`}>
                 <!-- Efecto de brillo en hover -->
                 <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
                 
-                <div class={`bg-${category.color}-900/30 w-16 h-16 rounded-xl flex items-center justify-center mb-4 text-3xl group-hover:bg-${category.color}-900/40 transition-all transform group-hover:-rotate-6 relative overflow-hidden`}>
+                <div class={`dark:bg-${category.color}-900/30 bg-${category.color}-100 w-16 h-16 rounded-xl flex items-center justify-center mb-4 text-3xl group-hover:bg-${category.color}-200 dark:group-hover:bg-${category.color}-900/40 transition-all transform group-hover:-rotate-6 relative overflow-hidden`}>
                   <!-- Efecto de brillo en el icono -->
                   <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent shimmer-effect opacity-0 group-hover:opacity-100"></div>
                   <i class={tech.icon} style={`color: ${tech.color}`}></i>
                 </div>
                 
-                <h3 class="text-xl font-bold text-center mb-1.5 text-white group-hover:text-${category.color}-300 transition-colors">{tech.name}</h3>
+                <h3 class="text-xl font-bold text-center mb-1.5 dark:text-white text-dark-800 group-hover:text-${category.color}-600 dark:group-hover:text-${category.color}-300 transition-colors">{tech.name}</h3>
                 
                 <!-- Badges con nivel de experiencia -->
-                <div class={`mt-2 px-3 py-1 text-xs rounded-full bg-${category.color}-500/20 text-${category.color}-300 border border-${category.color}-500/20 group-hover:border-${category.color}-500/40 transition-colors flex items-center gap-1.5`}>
+                <div class={`mt-2 px-3 py-1 text-xs rounded-full dark:bg-${category.color}-500/20 bg-${category.color}-200 dark:text-${category.color}-300 text-${category.color}-700 border border-${category.color}-500/20 group-hover:border-${category.color}-500/40 transition-colors flex items-center gap-1.5`}>
                   <span class="w-1.5 h-1.5 rounded-full bg-${category.color}-400"></span>
                   {tech.level}
                 </div>
@@ -243,5 +243,36 @@ const techCategories = [
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Estilos para modo claro */
+  :global(.light) .tab-btn {
+    @apply text-blue-600 border-blue-300;
+    background: rgba(59, 130, 246, 0.1);
+  }
+  
+  :global(.light) #tab-backend {
+    @apply text-indigo-600 border-indigo-300;
+    background: rgba(99, 102, 241, 0.1);
+  }
+  
+  :global(.light) #tab-tools {
+    @apply text-purple-600 border-purple-300;
+    background: rgba(168, 85, 247, 0.1);
+  }
+  
+  :global(.light) .tab-btn.active {
+    @apply bg-blue-100;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+  }
+  
+  :global(.light) #tab-backend.active {
+    @apply bg-indigo-100;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+  }
+  
+  :global(.light) #tab-tools.active {
+    @apply bg-purple-100;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
   }
 </style> 

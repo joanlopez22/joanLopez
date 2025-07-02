@@ -5,70 +5,119 @@
 <header class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-3" id="navbar">
   <div class="container mx-auto px-4 md:px-8">
     <div class="flex flex-row items-center justify-between">
-      <!-- Logo simplificado -->
+      <!-- Logo mejorado con animación -->
       <div class="text-left py-2 flex items-center">
         <a href="#" class="flex items-center group">
-          <div class="relative mr-2 w-10 h-10 flex items-center justify-center bg-blue-800/20 rounded-lg backdrop-blur-sm border border-blue-700/20">
-            <!-- Letra J simple -->
-            <span class="relative text-xl font-bold text-white">J</span>
+          <div class="relative mr-3 w-10 h-10 flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 dark:from-blue-500 dark:to-blue-700 rounded-lg shadow-lg hover:shadow-blue-500/30 transition-all duration-300 group-hover:scale-105 overflow-hidden">
+            <!-- Letra J con animación -->
+            <span class="relative text-xl font-bold text-white group-hover:animate-pulse">J</span>
+            <!-- Efecto de brillo -->
+            <div class="absolute inset-0 hover-shine"></div>
+            <!-- Efecto de resplandor -->
+            <div class="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
           <div class="flex flex-col">
-            <span class="text-xl font-bold text-white">
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Joan</span>López
+            <span class="text-xl font-bold text-gray-800 dark:text-white transition-colors duration-300">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700 dark:from-blue-400 dark:to-blue-600">Joan</span>López
             </span>
-            <span class="text-xs text-gray-400 tracking-wider">Software Developer</span>
+            <span class="text-xs text-gray-600 dark:text-gray-400 tracking-wider transition-colors duration-300">Software Developer</span>
           </div>
         </a>
       </div>
       
-      <!-- Botón de menú móvil simplificado -->
-      <button id="menu-toggle" class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors focus-ring" aria-label="Menu">
-        <div class="relative w-6 h-5 flex flex-col justify-between">
-          <span class="w-full h-0.5 bg-white rounded-full transform transition-all duration-300" id="line1"></span>
-          <span class="w-full h-0.5 bg-white rounded-full transform transition-all duration-300" id="line2"></span>
-          <span class="w-full h-0.5 bg-white rounded-full transform transition-all duration-300" id="line3"></span>
-        </div>
-      </button>
+      <div class="flex items-center gap-4">
+        <!-- Toggle de tema oscuro/claro con animación -->
+        <button id="theme-toggle" class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/50 hover:scale-105 hover:shadow-md" aria-label="Toggle theme">
+          <!-- Icono sol (modo claro) con animación -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block transform transition-transform duration-500 dark:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <!-- Icono luna (modo oscuro) con animación -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 block dark:hidden transform transition-transform duration-500 rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+        
+        <!-- Toggle de tema móvil junto al menú hamburguesa -->
+        <button id="theme-toggle-mobile" class="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/50 hover:scale-105 hover:shadow-md" aria-label="Toggle theme">
+          <!-- Icono sol (modo claro) con animación -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block transform transition-transform duration-500 dark:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <!-- Icono luna (modo oscuro) con animación -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 block dark:hidden transform transition-transform duration-500 rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+        
+        <!-- Botón de menú móvil mejorado con animación -->
+        <button id="menu-toggle" class="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/50 hover:scale-105 hover:shadow-md" aria-label="Menu">
+          <div class="relative w-5 h-4 flex flex-col justify-between">
+            <span class="w-full h-0.5 bg-current rounded-full transform transition-all duration-300" id="line1"></span>
+            <span class="w-full h-0.5 bg-current rounded-full transform transition-all duration-300" id="line2"></span>
+            <span class="w-full h-0.5 bg-current rounded-full transform transition-all duration-300" id="line3"></span>
+          </div>
+        </button>
       
-      <!-- Navegación Desktop Minimalista -->
-      <nav class="hidden md:flex items-center">
-        <div class="nav-links flex items-center gap-6 mx-auto">
-          <a href="#home" class="nav-link relative px-2 py-1 text-white hover:text-blue-400 transition-colors duration-300" data-section="home">
-            <span>Inicio</span>
-          </a>
-          <a href="#about" class="nav-link relative px-2 py-1 text-white hover:text-blue-400 transition-colors duration-300" data-section="about">
-            <span>Sobre mí</span>
-          </a>
-          <a href="#experience" class="nav-link relative px-2 py-1 text-white hover:text-blue-400 transition-colors duration-300" data-section="experience">
-            <span>Experiencia</span>
-          </a>
-          <a href="#projects" class="nav-link relative px-2 py-1 text-white hover:text-blue-400 transition-colors duration-300" data-section="projects">
-            <span>Proyectos</span>
-          </a>
-          <a href="#contact" class="px-4 py-2 rounded-md bg-blue-700/20 hover:bg-blue-700/30 border border-blue-600/30 text-white transition-all duration-300">
-            <span>Contacto</span>
-          </a>
-        </div>
-      </nav>
+        <!-- Navegación Desktop Mejorada con animaciones -->
+        <nav class="hidden md:flex items-center">
+          <div class="nav-links flex items-center gap-6 mx-auto">
+            <a href="#home" class="nav-link relative px-2 py-1 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300" data-section="home">
+              <span>Inicio</span>
+            </a>
+            <a href="#about" class="nav-link relative px-2 py-1 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300" data-section="about">
+              <span>Sobre mí</span>
+            </a>
+            <a href="#experience" class="nav-link relative px-2 py-1 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300" data-section="experience">
+              <span>Experiencia</span>
+            </a>
+            <a href="#projects" class="nav-link relative px-2 py-1 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300" data-section="projects">
+              <span>Proyectos</span>
+            </a>
+            <a href="#contact" class="px-4 py-2 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white transition-all duration-300 shadow-md hover:shadow-blue-500/30 transform hover:-translate-y-0.5 hover:scale-105">
+              <span>Contacto</span>
+            </a>
+          </div>
+        </nav>
+      </div>
     </div>
     
-    <!-- Mobile menu simplificado -->
-    <div id="mobile-menu" class="md:hidden hidden pt-4 pb-4 px-3 bg-secondary/95 backdrop-blur-lg rounded-md mt-4 shadow-lg border border-white/5 transition-all duration-300 max-h-0 overflow-hidden">
-      <nav class="flex flex-col space-y-2">
-        <a href="#home" class="mobile-link flex items-center gap-3 p-2 rounded-md text-white hover:bg-white/5 transition-colors" data-section="home">
+    <!-- Mobile menu mejorado con animaciones -->
+    <div id="mobile-menu" class="md:hidden hidden pt-4 pb-4 px-3 bg-white dark:bg-gray-900 rounded-xl mt-4 shadow-lg border border-gray-200 dark:border-gray-800 transition-all duration-300 max-h-0 overflow-hidden">
+      <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200 dark:border-gray-800">
+        <span class="text-sm font-medium text-gray-800 dark:text-gray-200">Menú</span>
+      </div>
+      
+      <nav class="flex flex-col space-y-1">
+        <a href="#home" class="mobile-link flex items-center gap-3 p-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-[1.02]" data-section="home">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
           <span>Inicio</span>
         </a>
-        <a href="#about" class="mobile-link flex items-center gap-3 p-2 rounded-md text-white hover:bg-white/5 transition-colors" data-section="about">
+        <a href="#about" class="mobile-link flex items-center gap-3 p-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-[1.02]" data-section="about">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
           <span>Sobre mí</span>
         </a>
-        <a href="#experience" class="mobile-link flex items-center gap-3 p-2 rounded-md text-white hover:bg-white/5 transition-colors" data-section="experience">
+        <a href="#experience" class="mobile-link flex items-center gap-3 p-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-[1.02]" data-section="experience">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
           <span>Experiencia</span>
         </a>
-        <a href="#projects" class="mobile-link flex items-center gap-3 p-2 rounded-md text-white hover:bg-white/5 transition-colors" data-section="projects">
+        <a href="#projects" class="mobile-link flex items-center gap-3 p-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-[1.02]" data-section="projects">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
           <span>Proyectos</span>
         </a>
-        <div class="pt-2 mt-2 border-t border-white/5">
-          <a href="#contact" class="flex justify-center items-center p-2 mt-2 rounded-md bg-blue-700/20 hover:bg-blue-700/30 border border-blue-600/30 text-white transition-all">
+        <div class="pt-2 mt-2 border-t border-gray-200 dark:border-gray-800">
+          <a href="#contact" class="flex justify-center items-center p-3 mt-2 rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white transition-all duration-300 hover:shadow-md hover:shadow-blue-500/20 hover:scale-[1.02]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
             <span>Contacto</span>
           </a>
         </div>
@@ -94,26 +143,68 @@
       
       // Animación del icono de hamburguesa
       if (isOpen) {
-        line1?.classList.add('rotate-45', 'translate-y-2');
+        line1?.classList.add('rotate-45', 'translate-y-1.5');
         line2?.classList.add('opacity-0');
-        line3?.classList.add('-rotate-45', '-translate-y-2');
+        line3?.classList.add('-rotate-45', '-translate-y-1.5');
         mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px'; 
       } else {
-        line1?.classList.remove('rotate-45', 'translate-y-2');
+        line1?.classList.remove('rotate-45', 'translate-y-1.5');
         line2?.classList.remove('opacity-0');
-        line3?.classList.remove('-rotate-45', '-translate-y-2');
+        line3?.classList.remove('-rotate-45', '-translate-y-1.5');
         mobileMenu.style.maxHeight = '0';
       }
     });
   }
   
+  // Gestión del tema oscuro/claro con animaciones
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+  
+  // Función para alternar el tema con animación
+  function toggleTheme() {
+    // Añadir clase para animar la rotación de los iconos
+    document.querySelectorAll('#theme-toggle svg, #theme-toggle-mobile svg').forEach(icon => {
+      icon.classList.add('rotate-180');
+    });
+    
+    // Cambiar el tema después de un pequeño retraso para la animación
+    setTimeout(() => {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      
+      // Quitar la clase de rotación después de la transición
+      setTimeout(() => {
+        document.querySelectorAll('#theme-toggle svg, #theme-toggle-mobile svg').forEach(icon => {
+          icon.classList.remove('rotate-180');
+        });
+      }, 500);
+    }, 150);
+  }
+  
+  // Aplicar tema guardado o preferencia del sistema
+  if (localStorage.getItem('theme') === 'dark' || 
+      (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+  
+  // Agregar event listeners para los botones de tema
+  themeToggle?.addEventListener('click', toggleTheme);
+  themeToggleMobile?.addEventListener('click', toggleTheme);
+  
   // Cambiar estilo del navbar al hacer scroll y activar enlace actual
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-      navbar?.classList.add('bg-secondary/80', 'backdrop-blur-lg', 'shadow-lg', 'py-2');
+      navbar?.classList.add('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-lg', 'shadow-lg', 'py-2', 'border-b', 'border-gray-200', 'dark:border-gray-800');
       navbar?.classList.remove('py-3');
     } else {
-      navbar?.classList.remove('bg-secondary/80', 'backdrop-blur-lg', 'shadow-lg', 'py-2');
+      navbar?.classList.remove('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-lg', 'shadow-lg', 'py-2', 'border-b', 'border-gray-200', 'dark:border-gray-800');
       navbar?.classList.add('py-3');
     }
 
@@ -137,19 +228,19 @@
       const linkSection = link.getAttribute('data-section');
       if (linkSection === current) {
         link.classList.add('active-link');
-        link.classList.add('text-blue-400');
+        link.classList.add('text-blue-600', 'dark:text-blue-400');
       } else {
         link.classList.remove('active-link');
-        link.classList.remove('text-blue-400');
+        link.classList.remove('text-blue-600', 'dark:text-blue-400');
       }
     });
     
     document.querySelectorAll('.mobile-link').forEach(link => {
       const linkSection = link.getAttribute('data-section');
       if (linkSection === current) {
-        link.classList.add('bg-white/5');
+        link.classList.add('bg-gray-100', 'dark:bg-gray-800');
       } else {
-        link.classList.remove('bg-white/5');
+        link.classList.remove('bg-gray-100', 'dark:bg-gray-800');
       }
     });
   });
@@ -162,8 +253,8 @@
     bottom: -2px;
     left: 0;
     width: 100%;
-    height: 1px;
-    background: #60a5fa;
+    height: 2px;
+    background: linear-gradient(90deg, #3B82F6, #1D4ED8);
     opacity: 1;
     transform: scaleX(1);
   }
@@ -174,8 +265,8 @@
     bottom: -2px;
     left: 0;
     width: 100%;
-    height: 1px;
-    background: #60a5fa;
+    height: 2px;
+    background: linear-gradient(90deg, #3B82F6, #1D4ED8);
     opacity: 0;
     transform: scaleX(0);
     transform-origin: center;
@@ -185,5 +276,16 @@
   .nav-link:hover::after {
     opacity: 1;
     transform: scaleX(1);
+  }
+  
+  /* Animación para el logo */
+  @keyframes pulse-subtle {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .animate-pulse-subtle {
+    animation: pulse-subtle 2s infinite;
   }
 </style> 

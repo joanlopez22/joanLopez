@@ -58,12 +58,23 @@ const {
 				left: -9999px !important;
 			}
 		</style>
+		
+		<!-- Script para manejar el tema oscuro/claro antes de la carga de la página -->
+		<script is:inline>
+			// Verificar si hay un tema guardado en localStorage o usar la preferencia del sistema
+			if (localStorage.getItem('theme') === 'dark' || 
+					(!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+			}
+		</script>
 	</head>
-	<body class="bg-secondary text-light min-h-screen font-sans">
-		<!-- Fondo minimalista -->
+	<body class="bg-white dark:bg-secondary text-dark dark:text-light min-h-screen font-sans transition-colors duration-300">
+		<!-- Fondo minimalista adaptado para modo claro/oscuro -->
 		<div class="fixed inset-0 -z-10 h-full w-full">
 			<!-- Gradiente sutil -->
-			<div class="absolute inset-0 bg-gradient-to-b from-secondary to-black"></div>
+			<div class="absolute inset-0 bg-gradient-to-b from-gray-50 to-white dark:from-secondary dark:to-black transition-colors duration-300"></div>
 			
 			<!-- Patrón de puntos minimalista -->
 			<div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(rgba(59, 130, 246, 0.3) 1px, transparent 1px); background-size: 40px 40px;"></div>
@@ -134,5 +145,10 @@ const {
 		height: 100%;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+	}
+	
+	/* Transiciones suaves para cambios de tema */
+	.transition-theme {
+		transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 	}
 </style>
