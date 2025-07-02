@@ -210,7 +210,12 @@
 </section>
 
 <!-- Script de Google reCAPTCHA v3 -->
-<script is:inline src="https://www.google.com/recaptcha/api.js?render=6LeMvXMrAAAAAEp0qnt_lauMtoVD1wtzViTAEEru"></script>
+<script is:inline src="https://www.google.com/recaptcha/api.js?render=6LeMvXMrAAAAAEp0qnt_lauMtoVD1wtzViTAEEru&badge=invisible"></script>
+
+<!-- Eliminar cualquier badge de reCAPTCHA que pueda aparecer -->
+<div style="display: none; visibility: hidden; opacity: 0; width: 0; height: 0; position: absolute; left: -9999px; z-index: -9999;">
+  <div class="grecaptcha-badge"></div>
+</div>
 
 <script>
   // Definir el tipo para grecaptcha
@@ -274,6 +279,14 @@
       });
     }
     
+    // Ocultar el badge de reCAPTCHA cuando la página se carga
+    document.addEventListener('DOMContentLoaded', function() {
+      const recaptchaBadge = document.querySelector('.grecaptcha-badge');
+      if (recaptchaBadge) {
+        (recaptchaBadge as HTMLElement).style.visibility = 'hidden';
+      }
+    });
+    
     async function handleFormSubmit(token: string) {
       // Cambiar el texto del botón a "Enviando"
       submitBtn.innerHTML = '<span class="flex items-center justify-center">Enviando... <svg class="animate-spin h-5 w-5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></span>';
@@ -326,11 +339,16 @@
 </script>
 
 <style>
-  /* Ocultar el badge de reCAPTCHA */
-  .grecaptcha-badge {
-    visibility: hidden !important;
+  /* Ocultar el badge de reCAPTCHA - CSS mejorado */
+  .grecaptcha-badge { 
+    visibility: hidden !important; 
     opacity: 0 !important;
     display: none !important;
+    z-index: -9999 !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
   }
   
   /* Estilos para el modal */
@@ -352,7 +370,8 @@
   .rc-anchor-normal,
   .rc-anchor-light,
   .rc-anchor-dark,
-  iframe[src*="recaptcha"] {
+  iframe[src*="recaptcha"],
+  div[style*="z-index: 2000000000"] {
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
@@ -360,6 +379,8 @@
     width: 0px !important;
     height: 0px !important;
     transform: scale(0) !important;
+    z-index: -9999 !important;
+    left: -9999px !important;
   }
   
   .modal-content {

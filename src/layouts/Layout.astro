@@ -8,7 +8,7 @@ interface Props {
 
 const { 
 	title = "Joan López Ramirez | Desarrollador FullStack",
-	description = "Portfolio profesional de Joan López Ramirez, Desarrollador FullStack con experiencia en .NET, IA y backend"
+	description = "Portfolio profesional de Joan López Ramirez, Desarrollador FullStack especializado en crear soluciones digitales innovadoras"
 } = Astro.props;
 ---
 
@@ -25,6 +25,39 @@ const {
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<!-- Devicon para iconos de tecnologías más realistas -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+		
+		<!-- Estilos globales para ocultar elementos de reCAPTCHA -->
+		<style>
+			/* Ocultar cualquier badge de reCAPTCHA en todo el sitio */
+			.grecaptcha-badge {
+				visibility: hidden !important;
+				opacity: 0 !important;
+				display: none !important;
+				z-index: -9999 !important;
+				width: 0 !important;
+				height: 0 !important;
+				position: absolute !important;
+				left: -9999px !important;
+			}
+			
+			/* Ocultar otros elementos de reCAPTCHA */
+			.rc-anchor-container, 
+			.rc-anchor-normal,
+			.rc-anchor-light,
+			.rc-anchor-dark,
+			iframe[src*="recaptcha"],
+			div[style*="z-index: 2000000000"] {
+				opacity: 0 !important;
+				visibility: hidden !important;
+				pointer-events: none !important;
+				position: absolute !important;
+				width: 0px !important;
+				height: 0px !important;
+				transform: scale(0) !important;
+				z-index: -9999 !important;
+				left: -9999px !important;
+			}
+		</style>
 	</head>
 	<body class="bg-secondary text-light min-h-screen font-sans">
 		<!-- Fondo minimalista -->
@@ -62,6 +95,32 @@ const {
 				document.querySelectorAll('.animate-on-scroll').forEach(el => {
 					observer.observe(el);
 				});
+				
+				// Ocultar cualquier badge de reCAPTCHA que pueda aparecer
+				const hideRecaptchaBadge = () => {
+					const badges = document.querySelectorAll('.grecaptcha-badge');
+					badges.forEach(badge => {
+						if (badge instanceof HTMLElement) {
+							badge.style.visibility = 'hidden';
+							badge.style.opacity = '0';
+							badge.style.display = 'none';
+						}
+					});
+					
+					// También ocultar contenedores de reCAPTCHA
+					const recaptchaContainers = document.querySelectorAll('div[style*="z-index: 2000000000"]');
+					recaptchaContainers.forEach(container => {
+						if (container instanceof HTMLElement) {
+							container.style.display = 'none';
+							container.style.visibility = 'hidden';
+						}
+					});
+				};
+				
+				// Ejecutar inmediatamente y también después de un tiempo
+				hideRecaptchaBadge();
+				setTimeout(hideRecaptchaBadge, 1000);
+				setTimeout(hideRecaptchaBadge, 3000);
 			});
 		</script>
 	</body>

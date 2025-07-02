@@ -7,7 +7,7 @@
 
 ## 🚀 Vista previa
 
-Portfolio profesional para Joan López, un Desarrollador FullStack especializado en .NET, IA y tecnologías backend. Diseñado con un estilo moderno, minimalista y elementos interactivos.
+Portfolio profesional para Joan López, un Desarrollador FullStack especializado en crear soluciones digitales innovadoras. Diseñado con un estilo moderno, minimalista y elementos interactivos.
 
 ### ✨ Características principales
 
