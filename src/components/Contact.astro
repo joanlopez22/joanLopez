@@ -212,17 +212,9 @@
 <!-- Script de Google reCAPTCHA v3 -->
 <script is:inline src="https://www.google.com/recaptcha/api.js?render=6LeMvXMrAAAAAEp0qnt_lauMtoVD1wtzViTAEEru&badge=invisible"></script>
 
-<!-- Eliminar cualquier badge de reCAPTCHA que pueda aparecer -->
-<div style="display: none; visibility: hidden; opacity: 0; width: 0; height: 0; position: absolute; left: -9999px; z-index: -9999;">
-  <div class="grecaptcha-badge"></div>
-</div>
+
 
 <script>
-  // Definir el tipo para grecaptcha
-  declare const grecaptcha: {
-    ready: (callback: () => void) => void;
-    execute: (siteKey: string, options: { action: string }) => Promise<string>;
-  };
 
   document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contactForm') as HTMLFormElement;
@@ -232,10 +224,8 @@
     const errorMessage = document.getElementById('errorMessage') as HTMLParagraphElement;
     
     // URL del webhook de n8n
-    const n8nWebhookUrl = 'https://jlopez5.app.n8n.cloud/webhook/joanlopezcontact';
+    const n8nWebhookUrl = 'https://joanlopez5.app.n8n.cloud/webhook/246518b2-2c4b-4e1c-a19a-03b7f7f18147';
     
-    // reCAPTCHA site key (clave real del sitio)
-    const recaptchaSiteKey = '6LeMvXMrAAAAAEp0qnt_lauMtoVD1wtzViTAEEru';
     
     // Ejecutar reCAPTCHA cuando se envíe el formulario
     if (contactForm && submitBtn && formStatus && successMessage && errorMessage) {
@@ -258,13 +248,7 @@
         
         try {
           // Ejecutar reCAPTCHA
-          await new Promise<void>((resolve) => {
-            grecaptcha.ready(() => {
-              grecaptcha.execute(recaptchaSiteKey, { action: 'submit' }).then((token) => {
-                resolve();
-              });
-            });
-          });
+          
           
           // Recoger datos del formulario
           const formData = {
